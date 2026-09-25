@@ -80,6 +80,7 @@ const startButton = document.getElementById("startButton");
 const gameCreated = document.getElementById("gameCreated");
 const gameCodeDisplay = document.getElementById("gameCodeDisplay");
 const allowedPlayerCount = [5,7,8,10];
+const openGames = document.getElementById("openGames");
 
 let players = [];
 
@@ -211,3 +212,39 @@ const playerRows = assignments.map((player) => ({
     
     window.location.href = `${gameCode}`;
 });
+
+async function loadOpenGames() {
+    const { data: games, error } = await supabaseClient
+        .from("games")
+        .select("id, game_code, created_at")
+        .order("created_at", { ascending: true });
+
+    if (error) {
+        console.error("Error loading games:", error);
+        openGames.innerHTML = "<p>Could not load open games.</p>";
+        return;
+    }
+
+    openGames.innerHTML = "";
+
+    if (games.length === 0) {
+        openGames.innerHTML = "<p>No open games.</p>";
+        return;
+    }
+
+    games.forEach((game) => {
+        const button = document.createElement("button");
+
+        button.textContent = game.game_code;
+        button.className = "open-game-button";
+
+        button.addEventListener("click", () => {
+            window.location.href =
+                `game.html?code=${encodeURIComponent(game.game_code)}`;
+        });
+
+        openGames.appendChild(button);
+    });
+}
+
+loadOpenGames();
