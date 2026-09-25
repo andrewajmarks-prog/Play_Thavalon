@@ -75,6 +75,8 @@ const addButton = document.getElementById("addButton");
 const playerList = document.getElementById("playerList");
 const playerCount = document.getElementById("playerCount");
 const startButton = document.getElementById("startButton");
+const gameCreated = document.getElementById("gameCreated");
+const gameCodeDisplay = document.getElementById("gameCodeDisplay");
 
 let players = [];
 
@@ -194,4 +196,6 @@ startButton.addEventListener("click", async () => {
     console.log("Game created:", gameId);
     console.log("Game code:", gameCode);
     console.log("Players created:", playerRows);
+    gameCodeDisplay.textContent = gameCode;
+    gameCreated.style.display = "block";
 });
