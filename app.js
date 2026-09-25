@@ -80,6 +80,25 @@ playerInput.addEventListener("keydown", (event) => {
     }
 });
 
-startButton.addEventListener("click", () => {
-    console.log("Players:", players);
+startButton.addEventListener("click", async () => {
+    if (players.length === 0) {
+        alert("Add at least one player.");
+        return;
+    }
+
+    const { data, error } = await supabase
+        .from("games")
+        .insert({
+            title: "Thavalon Game"
+        })
+        .select()
+        .single();
+
+    if (error) {
+        console.error("Error creating game:", error);
+        alert("Could not create the game.");
+        return;
+    }
+
+    console.log("Game created:", data);
 });
