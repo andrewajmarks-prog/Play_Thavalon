@@ -72,3 +72,19 @@ button {
 .player-name-button {
     padding: 12px 18px;
 }
+
+.open-games-section {
+    margin-top: 40px;
+}
+
+#openGames {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.open-game-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+}
