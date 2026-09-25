@@ -6,6 +6,70 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_KEY
 );
 
+const firstWords = [
+    "Arthurs",
+    "Guineveres",
+    "Merlins",
+    "Morganas",
+    "Mordreds",
+    "Lancelots",
+    "Gawains",
+    "Gareths",
+    "Kays",
+    "Percivals",
+    "Tristans",
+    "Iseults",
+    "Nimues",
+    "Uthers",
+    "Igraines",
+    "Elaines",
+    "Bediveres",
+    "Galahads",
+    "Bors",
+    "Agravaines",
+    "Camelots",
+    "Avalons",
+    "Tintagels",
+    "Camlanns"
+];
+
+const secondWords = [
+    "Sword",
+    "Crown",
+    "RoundTable",
+    "Scabbard",
+    "Shield",
+    "Spear",
+    "Chalice",
+    "Grail",
+    "Stone",
+    "Tower",
+    "Castle",
+    "Throne",
+    "Banner",
+    "Cloak",
+    "Ring",
+    "Mirror",
+    "Book",
+    "Bell",
+    "Rose",
+    "Raven",
+    "Dragon",
+    "Oak",
+    "Forest",
+    "Lake"
+];
+
+function generateGameCode() {
+    const first =
+        firstWords[Math.floor(Math.random() * firstWords.length)];
+
+    const second =
+        secondWords[Math.floor(Math.random() * secondWords.length)];
+
+    return `${first}-${second}`.toUpperCase();
+}
+
 const playerInput = document.getElementById("playerInput");
 const addButton = document.getElementById("addButton");
 const playerList = document.getElementById("playerList");
@@ -126,3 +190,5 @@ startButton.addEventListener("click", async () => {
     console.log("Game created:", gameId);
     console.log("Players created:", playerRows);
 });
+
+console.log("Test game code:", generateGameCode());
