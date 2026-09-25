@@ -61,6 +61,9 @@ players.forEach((player) => {
     button.className = "player-name-button";
 
     button.addEventListener("click", () => {
+        console.log("Clicked player:", player.name);
+        console.log("Saved information:", player.character);
+
         playerInformationElement.textContent = player.character;
     });
 
