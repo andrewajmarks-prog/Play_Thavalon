@@ -165,7 +165,7 @@ startButton.addEventListener("click", async () => {
         .from("games")
         .insert({
             id: gameId,
-            title: "Thavalon Game"
+            title: "Thavalon Game",
             game_code: gameCode
         });
 
