@@ -80,6 +80,10 @@ playerInput.addEventListener("keydown", (event) => {
     }
 });
 
+startButton.addEventListener("click", () => {
+    console.log("Players:", players);
+});
+
 startButton.addEventListener("click", async () => {
     if (players.length === 0) {
         alert("Add at least one player.");
