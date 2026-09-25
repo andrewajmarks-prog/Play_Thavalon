@@ -90,20 +90,39 @@ startButton.addEventListener("click", async () => {
         return;
     }
 
+    // Create a unique ID for this game.
     const gameId = crypto.randomUUID();
 
-    const { error } = await supabaseClient
+    // Create the game.
+    const { error: gameError } = await supabaseClient
         .from("games")
         .insert({
             id: gameId,
             title: "Thavalon Game"
         });
 
-    if (error) {
-        console.error("Error creating game:", error);
-        alert(`Could not create the game:\n${error.message}`);
+    if (gameError) {
+        console.error("Error creating game:", gameError);
+        alert(`Could not create the game:\n${gameError.message}`);
+        return;
+    }
+
+    // Create a player record for each player.
+    const playerRows = players.map((name) => ({
+        game_id: gameId,
+        name: name
+    }));
+
+    const { error: playerError } = await supabaseClient
+        .from("players")
+        .insert(playerRows);
+
+    if (playerError) {
+        console.error("Error creating players:", playerError);
+        alert(`Game created, but could not save the players:\n${playerError.message}`);
         return;
     }
 
     console.log("Game created:", gameId);
+    console.log("Players created:", playerRows);
 });
