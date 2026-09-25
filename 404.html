@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thavalon</title>
+</head>
+<body>
+    <script>
+        const path = window.location.pathname;
+
+        // Get the last part of the URL.
+        const gameCode = path.split("/").filter(Boolean).pop();
+
+        // Redirect to the game page with the code.
+        window.location.replace(
+            `/Play_Thavalon/game.html?code=${gameCode}`
+        );
+    </script>
+</body>
+</html>
