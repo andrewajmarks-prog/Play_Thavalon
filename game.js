@@ -42,7 +42,7 @@ async function loadGame() {
     // Get the players belonging to this game.
     const { data: players, error: playerError } = await supabaseClient
         .from("players")
-        .select("name")
+        .select("name", "character")
         .eq("game_id", game.id);
 
     if (playerError) {
@@ -54,19 +54,14 @@ async function loadGame() {
 
     console.log("Character assignments:", playerInformation);
 
-assignments.forEach((player) => {
+players.forEach((player) => {
     const button = document.createElement("button");
 
     button.textContent = player.name;
     button.className = "player-name-button";
 
     button.addEventListener("click", () => {
-        const selectedPlayer = assignments.find(
-            assignment => assignment.name === player.name
-        );
-
-        playerInformationElement.textContent =
-            selectedPlayer.playerEntry;
+        playerInformationElement.textContent = player.character;
     });
 
     playerButtons.appendChild(button);
