@@ -1,6 +1,8 @@
 const playerInput = document.getElementById("playerInput");
 const addButton = document.getElementById("addButton");
 const playerList = document.getElementById("playerList");
+const playerCount = document.getElementById("playerCount");
+const startButton = document.getElementById("startButton");
 
 let players = [];
 
@@ -17,14 +19,16 @@ function addPlayer() {
 
     renderPlayers();
 
-    // Put the cursor back in the input.
+    // Keep the input focused on mobile.
     playerInput.focus();
 }
 
 function removePlayer(index) {
     players.splice(index, 1);
+
     renderPlayers();
 
+    // Keep the input ready for another player.
     playerInput.focus();
 }
 
@@ -52,6 +56,11 @@ function renderPlayers() {
 
         playerList.appendChild(playerElement);
     });
+
+    playerCount.textContent =
+        players.length === 1
+            ? "1 player"
+            : `${players.length} players`;
 }
 
 addButton.addEventListener("click", addPlayer);
@@ -61,4 +70,8 @@ playerInput.addEventListener("keydown", (event) => {
         event.preventDefault();
         addPlayer();
     }
+});
+
+startButton.addEventListener("click", () => {
+    console.log("Players:", players);
 });
