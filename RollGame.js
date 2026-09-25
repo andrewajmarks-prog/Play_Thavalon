@@ -48,11 +48,6 @@ let arthurView = ["Merlin", "Percival", "Lancelot", "Iseult", "Tristan", "Guinev
 var seen = []
 
 export function assignCharacters(players) {
-  //players = ["Anna", "Becca", "Cathy", "David", "Eric"]
-  players = ["Anna", "Becca", "Cathy", "David", "Eric", "Fred", "Gary"]
-  //players = ["Anna", "Becca", "Cathy", "David", "Eric", "Fred", "Gary", "Henry"]
-  //players = ["Anna", "Becca", "Cathy", "David", "Eric", "Fred", "Gary", "Henry", "Isaac", "Jacob"]
-
     let availableChars = characters.filter(characters => characters.playerNumber <= players.length);
 
     let evilNum = playerRatio.find(playerRatio => playerRatio.playerNum == players.length)?.evilNum;
