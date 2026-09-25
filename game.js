@@ -45,6 +45,8 @@ async function loadGame() {
         .select("name", "character")
         .eq("game_id", game.id);
 
+    console.log("Players returned from Supabase:", players);
+
     if (playerError) {
         console.error("Error loading players:", playerError);
         playerList.textContent = "Could not load players.";
