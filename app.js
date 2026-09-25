@@ -77,6 +77,7 @@ const playerCount = document.getElementById("playerCount");
 const startButton = document.getElementById("startButton");
 const gameCreated = document.getElementById("gameCreated");
 const gameCodeDisplay = document.getElementById("gameCodeDisplay");
+const allowedPlayerCount = [5,7,8,10];
 
 let players = [];
 
@@ -151,10 +152,14 @@ startButton.addEventListener("click", () => {
 });
 
 startButton.addEventListener("click", async () => {
-    if (players.length === 0) {
-        alert("Add at least one player.");
+    if (!allowedPlayerCount.includes(players.length)) {
+        alert("Incorrect player count. Must have 5, 7, 8, or 10 players.");
         return;
     }
+    // if (players.length !== 0) {
+    //     alert("Add at least one player.");
+    //     return;
+    // }
 
     // Create a unique ID for this game.
     const gameId = crypto.randomUUID();
@@ -196,6 +201,6 @@ startButton.addEventListener("click", async () => {
     console.log("Game created:", gameId);
     console.log("Game code:", gameCode);
     console.log("Players created:", playerRows);
-    gameCodeDisplay.textContent = gameCode;
-    gameCreated.style.display = "block";
+    
+    window.location.href = `game.html?code=${gameCode}`;
 });
