@@ -185,10 +185,15 @@ startButton.addEventListener("click", async () => {
     }
 
     // Create a player record for each player.
-    const playerRows = players.map((name) => ({
-        game_id: gameId,
-        name: name
-    }));
+    const playerNames = players.map((name) => name);
+
+const assignments = assignCharacters(playerNames);
+
+const playerRows = assignments.map((player) => ({
+    game_id: gameId,
+    name: player.name,
+    character: player.playerEntry
+}));
 
     const { error: playerError } = await supabaseClient
         .from("players")
