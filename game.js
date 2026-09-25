@@ -51,9 +51,6 @@ async function loadGame() {
         return;
     }
 
-    const playerNames = players.map((player) => player.name);
-
-    const assignments = assignCharacters(playerNames);
 
     console.log("Character assignments:", playerInformation);
 
