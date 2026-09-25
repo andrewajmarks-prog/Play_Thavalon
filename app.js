@@ -99,10 +99,10 @@ startButton.addEventListener("click", async () => {
         .single();
 
     if (error) {
-        console.error("Error creating game:", error);
-        alert("Could not create the game.");
-        return;
-    }
+    console.error("Error creating game:", error);
+    alert(`Could not create the game:\n${error.message}`);
+    return;
+}
 
     console.log("Game created:", data);
 });
