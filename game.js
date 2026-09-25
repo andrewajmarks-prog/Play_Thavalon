@@ -9,7 +9,8 @@ const supabaseClient = window.supabase.createClient(
 );
 
 const gameCodeElement = document.getElementById("gameCode");
-const playerList = document.getElementById("playerList");
+const playerSelect = document.getElementById("playerSelect");
+const playerInformation = document.getElementById("playerInformation");
 
 // Get the game code from the URL.
 const urlParams = new URLSearchParams(window.location.search);
@@ -57,10 +58,26 @@ async function loadGame() {
     console.log("Character assignments:", playerInformation);
 
 playerInformation.forEach((player) => {
-    const playerElement = document.createElement("div");
-    playerElement.className = "player";
-    playerElement.textContent = `${player.name}: ${player.playerEntry}`;
+    const option = document.createElement("option");
 
-    playerList.appendChild(playerElement);
+    option.value = player.name;
+    option.textContent = player.name;
+
+    playerSelect.appendChild(option);
+});
+
+playerSelect.addEventListener("change", () => {
+    const selectedName = playerSelect.value;
+
+    if (!selectedName) {
+        playerInformation.textContent = "";
+        return;
+    }
+
+    const selectedPlayer = playerInformation.find(
+        player => player.name === selectedName
+    );
+
+    playerInformation.textContent = selectedPlayer.playerEntry;
 });
 }
