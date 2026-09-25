@@ -156,6 +156,9 @@ startButton.addEventListener("click", async () => {
 
     // Create a unique ID for this game.
     const gameId = crypto.randomUUID();
+    
+    // Generate the short game code.
+    const gameCode = generateGameCode();
 
     // Create the game.
     const { error: gameError } = await supabaseClient
@@ -163,6 +166,7 @@ startButton.addEventListener("click", async () => {
         .insert({
             id: gameId,
             title: "Thavalon Game"
+            game_code: gameCode
         });
 
     if (gameError) {
@@ -188,7 +192,6 @@ startButton.addEventListener("click", async () => {
     }
 
     console.log("Game created:", gameId);
+    console.log("Game code:", gameCode);
     console.log("Players created:", playerRows);
 });
-
-console.log("Test game code:", generateGameCode());
