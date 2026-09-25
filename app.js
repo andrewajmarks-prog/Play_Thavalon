@@ -90,19 +90,20 @@ startButton.addEventListener("click", async () => {
         return;
     }
 
-    const { data, error } = await supabaseClient
+    const gameId = crypto.randomUUID();
+
+    const { error } = await supabaseClient
         .from("games")
         .insert({
+            id: gameId,
             title: "Thavalon Game"
-        })
-        .select()
-        .single();
+        });
 
     if (error) {
-    console.error("Error creating game:", error);
-    alert(`Could not create the game:\n${error.message}`);
-    return;
-}
+        console.error("Error creating game:", error);
+        alert(`Could not create the game:\n${error.message}`);
+        return;
+    }
 
-    console.log("Game created:", data);
+    console.log("Game created:", gameId);
 });
