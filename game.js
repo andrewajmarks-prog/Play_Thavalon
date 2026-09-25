@@ -1,5 +1,3 @@
-console.log("GAME.JS IS RUNNING");
-
 import { assignCharacters } from "./RollGame.js";
 
 const SUPABASE_URL = "https://gqtuupyqhgqbismnlssl.supabase.co";
