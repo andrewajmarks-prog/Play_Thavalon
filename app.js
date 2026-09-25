@@ -1,3 +1,5 @@
+import { assignCharacters } from "./RollGame.js";
+
 const SUPABASE_URL = "https://gqtuupyqhgqbismnlssl.supabase.co";
 const SUPABASE_KEY = "sb_publishable_4tCAGKB8-k5rvfsFDeAlLA_iPWWbByI";
 
