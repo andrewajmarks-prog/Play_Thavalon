@@ -1,3 +1,5 @@
+import { assignCharacters } from "./RollGame.js";
+
 const SUPABASE_URL = "https://gqtuupyqhgqbismnlssl.supabase.co";
 const SUPABASE_KEY = "sb_publishable_4tCAGKB8-k5rvfsFDeAlLA_iPWWbByI";
 
@@ -48,11 +50,17 @@ async function loadGame() {
         return;
     }
 
-    players.forEach((player) => {
-        const playerElement = document.createElement("div");
-        playerElement.className = "player";
-        playerElement.textContent = player.name;
+    const playerNames = players.map((player) => player.name);
 
-        playerList.appendChild(playerElement);
-    });
+    const playerInformation = assignCharacters(playerNames);
+
+    console.log("Character assignments:", playerInformation);
+
+playerInformation.forEach((player) => {
+    const playerElement = document.createElement("div");
+    playerElement.className = "player";
+    playerElement.textContent = `${player.name}: ${player.playerEntry}`;
+
+    playerList.appendChild(playerElement);
+});
 }
