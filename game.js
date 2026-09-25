@@ -42,7 +42,7 @@ async function loadGame() {
     // Get the players belonging to this game.
     const { data: players, error: playerError } = await supabaseClient
         .from("players")
-        .select("name", "character")
+        .select("name, character")
         .eq("game_id", game.id);
 
     console.log("Players returned from Supabase:", players);
