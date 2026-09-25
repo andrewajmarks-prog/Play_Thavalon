@@ -202,5 +202,5 @@ startButton.addEventListener("click", async () => {
     console.log("Game code:", gameCode);
     console.log("Players created:", playerRows);
     
-    window.location.href = `game.html?code=${gameCode}`;
+    window.location.href = `${gameCode}`;
 });
