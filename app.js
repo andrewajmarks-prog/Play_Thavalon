@@ -1,7 +1,7 @@
 const SUPABASE_URL = "https://gqtuupyqhgqbismnlssl.supabase.co/rest/v1/";
 const SUPABASE_KEY = "sb_publishable_4tCAGKB8-k5rvfsFDeAlLA_iPWWbByI";
 
-const supabase = window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
@@ -90,7 +90,7 @@ startButton.addEventListener("click", async () => {
         return;
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
         .from("games")
         .insert({
             title: "Thavalon Game"
